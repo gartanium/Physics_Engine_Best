@@ -24,7 +24,7 @@ private:
 
 public:
 
-	Game(int screenWidth, int screenHeight);
+	Game(int screenWidth, int screenHeight, int minRadius, int maxRadius, int minVelocity, int maxVelocity);
 	~Game();
 
 	/**************************************************************************

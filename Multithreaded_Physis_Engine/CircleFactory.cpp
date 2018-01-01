@@ -1,7 +1,12 @@
 #include "stdafx.h"
 #include "CircleFactory.h"
 
-CircleFactory::CircleFactory(int screenHeight, int screenWidth)
+/**************************************************************************
+* Function: Non-default constructor
+* Initializes the Circle Factory with given settings as inputs.
+* Creates each circle based upon the settings.
+**************************************************************************/
+CircleFactory::CircleFactory(int minRadius, int maxRadius, int minVelocity, int maxVelocity, int screenHeight, int screenWidth)
 {
 	this->screenHeight = screenHeight;
 	this->screenWidth = screenWidth;
@@ -12,18 +17,22 @@ CircleFactory::CircleFactory(int screenHeight, int screenWidth)
 	xMin = screenWidth / 2 - screenWidth / 4;
 	yMin = screenHeight / 2 - screenHeight / 4;
 
-	dXMax = 1;
-	dXMin = 1;
-	dYMax = 1;
-	dYMin = 1;
+	dXMax = maxVelocity;
+	dXMin = minVelocity;
+	dYMax = maxVelocity;
+	dYMin = minVelocity;
 
-	radiusMax = 8;
-	radiusMin = 5;
+	radiusMax = maxRadius;
+	radiusMin = minRadius;
 
 	//radiusMax = 3;
 	//radiusMin = 1;
 }
 
+/**************************************************************************
+* Function: Default constructor.
+* Sets all values to default.
+**************************************************************************/
 CircleFactory::CircleFactory()
 {
 	xMax = 0;
@@ -40,11 +49,18 @@ CircleFactory::CircleFactory()
 	dYMin = 0;
 }
 
-
+/**************************************************************************
+* Function: Deconstructor
+**************************************************************************/
 CircleFactory::~CircleFactory()
 {
 }
 
+/**************************************************************************
+* Function: AddCircle
+* Addes a circle to a vector. Takes as inputs the position of the circle.
+* The factory generates each circle based upon the circle settings.
+**************************************************************************/
 void CircleFactory::addCircle(int x, int y, std::vector<Circle> & circles)
 {
 
@@ -54,8 +70,12 @@ void CircleFactory::addCircle(int x, int y, std::vector<Circle> & circles)
 	int randDx = rand() % dXMax + dXMin;
 	int randDy = rand() % dYMax + dYMin;
 	int randRadius = rand() % radiusMax + radiusMin;
+	
 
-
+	/*int randDx = 2;
+	int randDy = 2;
+	int randRadius = 8;
+	*/
 	Circle newObj;
 	newObj.setX(x);
 	newObj.setY(y);

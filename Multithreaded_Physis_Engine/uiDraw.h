@@ -7,6 +7,6 @@ public:
 	UiDraw();
 	~UiDraw();
 	void drawCircle(SDL_Renderer * gRenderer, int radius,  int x0, int y0, SDL_Color color);
-	void drawBlueCircle(SDL_Renderer * gRenderer, int radius, int x0, int y0);
+	void drawRedCircle(SDL_Renderer * gRenderer, int radius, int x0, int y0);
 };
 

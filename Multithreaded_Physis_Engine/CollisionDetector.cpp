@@ -2,38 +2,10 @@
 #include "CollisionDetector.h"
 #include <iostream>
 
-
-void CollisionDetector::updateCircleVelocity(Circle & circle, int x, int y)
-{
-	#pragma omp critical
-	{
-		circle.setDx(x);
-		circle.setDy(y);
-	}
-	
-}
-
-void CollisionDetector::updateCircleVelocity(Circle & circle, Circle & circleRhs)
-{
-	#pragma omp critical
-	{
-		circle.setDx(circleRhs.getDx());
-		circle.setDy(circleRhs.getDy());
-	}
-}
-
-void CollisionDetector::updateCircleX(Circle & circle, int x)
-{
-	#pragma omp critical
-		circle.setDx(x);
-}
-
-void CollisionDetector::updateCircleY(Circle & circle, int y)
-{
-	#pragma omp critical
-		circle.setDy(y);
-}
-
+/**************************************************************************
+* Function: Non-Default constructor
+* Initializes the collision detector using the bounds of the screen
+**************************************************************************/
 CollisionDetector::CollisionDetector(int screenWidth, int screenHeight)
 {
 	this->screenWidth = screenWidth;
@@ -41,7 +13,7 @@ CollisionDetector::CollisionDetector(int screenWidth, int screenHeight)
 }
 
 /**************************************************************************
-* Function:
+* Function: Deconstructor
 **************************************************************************/
 CollisionDetector::~CollisionDetector()
 {
@@ -69,6 +41,13 @@ void CollisionDetector::handleCircleCollisions(std::vector<Circle>& obj)
 
 				if (obj[i].intersects(obj[j]))
 				{
+				
+					obj[i].addX(obj[i].getDx() * -1);
+					obj[i].addY(obj[i].getDy() * -1);
+					
+					obj[j].addX(obj[j].getDx() * -1);
+					obj[j].addY(obj[j].getDy() * -1);
+
 					int tempX = obj[i].getDx();
 					int tempY = obj[i].getDy();
 

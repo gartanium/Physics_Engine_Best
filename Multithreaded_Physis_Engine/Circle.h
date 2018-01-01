@@ -38,6 +38,9 @@ public:
 	void addDx(int value) { dx += value; }
 	void addDy(int value) { dy += value; }
 
+	void addX(int value) { x += value; }
+	void addY(int value) { y += value; }
+
 	void clearDx() { dx = 0; }
 	void clearDy() { dy = 0; }
 

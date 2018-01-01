@@ -10,12 +10,13 @@
 class CircleFactory
 {
 private:
-	// Screen bounds for the circles being generated.
+
+	// Settings used to create a circle. 
 	int xMax;
 	int xMin;
 	int yMax;
 	int yMin;
-	int dXMax;
+	int dXMax; // dx and dy implies velocity
 	int dXMin;
 	int dYMax;
 	int dYMin;
@@ -25,7 +26,7 @@ private:
 	int radiusMin;
 
 public:
-	CircleFactory(int screenHeight, int screenWidth);
+	CircleFactory(int minRadius, int maxRadius, int minVelocity, int maxVelocity, int screenHeight, int screenWidth);
 	CircleFactory();
 	~CircleFactory();
 	void addCircle(int x, int y, std::vector<Circle> & circles);
